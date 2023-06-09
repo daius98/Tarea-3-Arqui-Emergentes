@@ -50,6 +50,11 @@ def get_user(username):
     user = controller.get_user(username)
     return jsonify(user)
 
+@app.route('/company', methods=["GET"])
+def get_company():
+    users = controller.get_company()
+    return jsonify(users)
+
 @app.route('/location/<location_id>', methods=["GET"])
 def get_location(location_id):
     location = controller.get_location(location_id)

@@ -49,6 +49,12 @@ def get_users():
     cursor.execute(query)
     return cursor.fetchall()
 
+def get_company():
+    db = get_db()
+    cursor = db.cursor()
+    query = "SELECT * FROM Company"
+    cursor.execute(query)
+    return cursor.fetchall()
 
 def get_location(location_id):
     db = get_db()
