@@ -143,6 +143,6 @@ def get_sensor_data(company_apy_key, sensor_id, time_from, time_to):
         statement = "SELECT * FROM Sensor_data WHERE sensor_id = ? AND time > ? AND time < ?"
         cursor.execute(statement, [sensor_id, time_from, time_to])
         db.commit()
-        return cursor.fetchone()
+        return cursor.fetchall()
     else:
         return False
