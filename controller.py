@@ -45,7 +45,7 @@ def get_user(username):
 def get_users():
     db = get_db()
     cursor = db.cursor()
-    query = "SELECT username FROM Admin"
+    query = "SELECT * FROM Admin"
     cursor.execute(query)
     return cursor.fetchall()
 
