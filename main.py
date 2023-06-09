@@ -129,4 +129,4 @@ if __name__ == "__main__":
     Here you can change debug and port
     Remember that, in order to make this API functional, you must set debug in False
     """
-    app.run(host='ec2-13-53-168-48.eu-north-1.compute.amazonaws.com', port=8000, debug=False)
+    app.run(host='13.53.168.48', port=8000, debug=False)
