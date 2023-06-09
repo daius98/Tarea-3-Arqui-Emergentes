@@ -123,7 +123,7 @@ def insert_sensor_data(sensor_apy_key, sensor_id, variable_name_1, variable_1, v
     cursor.execute(apy_key_statement, [sensor_id])
     result = cursor.fetchone()
     print(result)
-    if result == sensor_apy_key:
+    if result[0] == sensor_apy_key:
         epoch_time = int(time.time())
         statement = "INSERT INTO Sensor_data(sensor_id, variable_name_1, variable_1, variable_name_2, variable_2, time) VALUES (?, ?, ?, ?, ?, ?)"
         cursor.execute(statement, [sensor_id, variable_name_1, variable_1, variable_name_2, variable_2, epoch_time])
@@ -139,7 +139,7 @@ def get_sensor_data(sensor_apy_key, sensor_id, time_from, time_to):
     cursor.execute(apy_key_statement, [sensor_id])
     result = cursor.fetchone()
     
-    if result == sensor_apy_key:
+    if result[0] == sensor_apy_key:
         statement = "SELECT * FROM Sensor_data WHERE sensor_id = ? AND time > ? AND time < ?"
         cursor.execute(statement, [sensor_id, time_from, time_to])
         db.commit()
