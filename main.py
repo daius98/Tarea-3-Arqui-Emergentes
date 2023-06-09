@@ -120,10 +120,10 @@ def insert_sensor_data():
 
 @app.route('/v1/sensor_data/<int:sensor_id>', methods=["GET"])
 def get_sensor_data(sensor_id):
-    sensor_apy_key = request.args.get('sensor_apy_key')
+    company_apy_key = request.args.get('company_apy_key')
     time_from = request.args.get('time_from')
     time_to = request.args.get('time_to')
-    sensor = controller.get_sensor_data(sensor_apy_key, sensor_id, time_from, time_to)
+    sensor = controller.get_sensor_data(company_apy_key, sensor_id, time_from, time_to)
     return jsonify(sensor)
 
 
