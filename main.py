@@ -118,15 +118,14 @@ def insert_sensor_data():
     result = controller.insert_sensor_data(sensor_apy_key, sensor_id, variable_name_1, variable_1, variable_name_2, variable_2)
     return jsonify(result)
 
-@app.route('/v1/sensor_data/', methods=["GET"])
+@app.route('/v1/sensor_data/<int:sensor_id>', methods=["GET"])
 def get_sensor_data(sensor_id):
-    details = request.get_json()
-    sensor_apy_key = details["sensor_apy_key"]
-    sensor_id = details["sensor_id"]
-    time_from = details["time_from"]
-    time_to = details["time_to"]
-    sensor = controller.get_sensor_data(sensor_apy_key,sensor_id, time_from, time_to)
+    sensor_apy_key = request.args.get('sensor_apy_key')
+    time_from = request.args.get('time_from')
+    time_to = request.args.get('time_to')
+    sensor = controller.get_sensor_data(sensor_apy_key, sensor_id, time_from, time_to)
     return jsonify(sensor)
+
 
 if __name__ == "__main__":
     create_tables()
