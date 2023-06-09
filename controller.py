@@ -132,14 +132,14 @@ def insert_sensor_data(sensor_apy_key, sensor_id, variable_name_1, variable_1, v
     else:
         return False
     
-def get_sensor_data(sensor_apy_key, sensor_id, time_from, time_to):
+def get_sensor_data(company_apy_key, sensor_id, time_from, time_to):
     db = get_db()
     cursor = db.cursor()
-    apy_key_statement = "SELECT sensor_apy_key FROM Sensor WHERE sensor_id = ?"
+    apy_key_statement = "SELECT company_apy_key FROM Sensor,Location,Company WHERE sensor_id = ? AND Sensor.location_id = Location.location_id AND Company.company_id = Location.company_id"
     cursor.execute(apy_key_statement, [sensor_id])
     result = cursor.fetchone()
-    
-    if result[0] == sensor_apy_key:
+    print(result)
+    if result[0] == company_apy_key:
         statement = "SELECT * FROM Sensor_data WHERE sensor_id = ? AND time > ? AND time < ?"
         cursor.execute(statement, [sensor_id, time_from, time_to])
         db.commit()
